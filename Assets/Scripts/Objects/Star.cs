@@ -85,7 +85,7 @@ public class Star : MonoBehaviour
 
         maxShoots = 15;
 
-        rotationSpeed = -35;
+        rotationSpeed = -25;
 
         while (currentShoots < maxShoots)
         {
@@ -112,7 +112,7 @@ public class Star : MonoBehaviour
 
         maxShoots = 60;
 
-        rotationSpeed = 45;
+        rotationSpeed = 25;
 
         while (currentShoots < maxShoots)
         {

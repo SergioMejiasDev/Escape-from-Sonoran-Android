@@ -63,6 +63,7 @@ public class Boss3Manager : MonoBehaviour
     /// <param name="killPlayer">It will be true if the player dies in the explosion, false if the enemy dies.</param>
     public void StartExplosion(bool killPlayer)
     {
+        GameManager.gameManager.ChangeCursor(false);
         StartCoroutine(Explosion(killPlayer));
     }
 

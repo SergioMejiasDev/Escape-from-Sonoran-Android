@@ -52,11 +52,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        //if (Screen.height / Screen.width < 2.16)
-        //{
-        //    Screen.SetResolution(1480, 720, true);
-        //}
-
         Time.timeScale = 1;
         gameManager = this;
 
@@ -82,6 +77,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Function called when the player cancels the narrative texts.
+    /// </summary>
     public void CancelButton()
     {
         if (canSkip)
