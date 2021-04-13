@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  damage: 0
+  damage: 1
   destroyOnGround: 1
   enemyBullet: 0
 --- !u!82 &-175460815105055301
