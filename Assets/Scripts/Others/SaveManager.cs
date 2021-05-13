@@ -1,8 +1,9 @@
 ﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 /// <summary>
-/// Class that manages saving and loading of scores in a JSON file.
+/// Class that manages saving and loading of scores in a binary file.
 /// </summary>
 public class SaveManager : MonoBehaviour
 {
@@ -31,11 +32,6 @@ public class SaveManager : MonoBehaviour
 
             LoadOptions();
 
-            if (Screen.height / Screen.width < 2.16)
-            {
-                Screen.SetResolution(1480, 720, true);
-            }
-
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
     }
@@ -45,20 +41,17 @@ public class SaveManager : MonoBehaviour
     /// </summary>
     public void LoadOptions()
     {
-        OptionsData data = new OptionsData();
+        SettingsData data = new SettingsData();
 
-        string json;
-
-        string path = Application.persistentDataPath + "/Options.json";
+        string path = Application.persistentDataPath + "/Settings.sav";
 
         if (File.Exists(path))
         {
-            using (StreamReader reader = new StreamReader(path))
-            {
-                json = reader.ReadToEnd();
-            }
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
 
-            JsonUtility.FromJsonOverwrite(json, data);
+            data = formatter.Deserialize(stream) as SettingsData;
+            stream.Close();
 
             activeLanguage = data.activeLanguage;
             firstTime = data.firstTime;
@@ -72,7 +65,7 @@ public class SaveManager : MonoBehaviour
     /// </summary>
     public void SaveOptions()
     {
-        OptionsData data = new OptionsData
+        SettingsData data = new SettingsData
         {
             activeLanguage = activeLanguage,
             firstTime = firstTime,
@@ -80,15 +73,14 @@ public class SaveManager : MonoBehaviour
             sfxVolume = sfxVolume,
         };
 
-        string json = JsonUtility.ToJson(data);
+        BinaryFormatter formatter = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/Options.json";
+        string path = Application.persistentDataPath + "/Settings.sav";
 
         FileStream fileStream = new FileStream(path, FileMode.Create);
 
-        using (StreamWriter writer = new StreamWriter(fileStream))
-        {
-            writer.Write(json);
-        }
+        formatter.Serialize(fileStream, data);
+
+        fileStream.Close();
     }
 }
