@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         gameManager = this;
 
-        ScaleScreen();
+        LetterBoxer.AddLetterBoxingCamera();
 
         if (gameOver != null)
         {
@@ -610,43 +610,6 @@ public class GameManager : MonoBehaviour
             Color = new Color(Color.r, Color.g, Color.b, alphaValue);
             skipText.color = new Color(Color.r, Color.g, Color.b, alphaValue);
             yield return null;
-        }
-    }
-
-    /// <summary>
-    /// Function called to scale the screen to a 1480:720 format.
-    /// </summary>
-    void ScaleScreen()
-    {
-        float targetAspect = 1480.0f / 720.0f;
-        float windowAspect = (float)Screen.width / (float)Screen.height;
-        float scaleheight = windowAspect / targetAspect;
-        Camera camera = Camera.main;
-
-        if (scaleheight < 1.0f)
-        {
-            Rect rect = camera.rect;
-
-            rect.width = 1.0f;
-            rect.height = scaleheight;
-            rect.x = 0;
-            rect.y = (1.0f - scaleheight) / 2.0f;
-
-            camera.rect = rect;
-        }
-
-        else
-        {
-            float scalewidth = 1.0f / scaleheight;
-
-            Rect rect = camera.rect;
-
-            rect.width = scalewidth;
-            rect.height = 1.0f;
-            rect.x = (1.0f - scalewidth) / 2.0f;
-            rect.y = 0;
-
-            camera.rect = rect;
         }
     }
 }
