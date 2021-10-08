@@ -38,6 +38,14 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(Generate());
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            GameManager.gameManager.CloseGame();
+        }
+    }
+
     /// <summary>
     /// Function that is responsible for changing the language of all the texts in the game.
     /// </summary>
