@@ -1,7 +1,7 @@
 # Escape-from-Sonoran
 Video game created in Unity by me and a colleague as a final project of a video game creation course with Unity.
 
-It has been done using Unity version 2019.4.24f1.
+It has been done using Unity version 2020.3.21f1.
 
 The playable game can be downloaded from https://play.google.com/store/apps/details?id=com.SergioMejias.EscapeFromSonoran
 
